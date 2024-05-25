@@ -22,7 +22,7 @@ FinancialFit is a demo web application designed to empower users with financial 
 1. Clone this repository:
 
 ```
-git clone https://github.com/your-username/financialfit-demo.git
+git clone hhttps://github.com/Gacky1/FinanceManager.git
 ```
 
 2. Open the `index.html` file in your web browser.
