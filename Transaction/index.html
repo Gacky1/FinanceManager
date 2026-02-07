@@ -4,68 +4,234 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FinancialFit-Tracker</title>
+    <title>Transaction Manager - FinancialFit</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" href="/assets/logo white.png" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/f5a9ff35dc.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <h1>Expense Tracker</h1>
+    <!-- Navigation Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-coins"></i>
+                <span class="logo-text">FinancialFit</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div class="nav-menu">
+            <a class="nav-item" href="/index2.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-item active" href="/Transaction/index.html">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>Transactions</span>
+            </a>
+            <a class="nav-item" href="/accounts">
+                <i class="fa-solid fa-wallet"></i>
+                <span>Accounts</span>
+            </a>
+            <a class="nav-item" href="/reports">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Reports</span>
+            </a>
+            <a class="nav-item" href="/budget">
+                <i class="fa-solid fa-shopping-basket"></i>
+                <span>Budget</span>
+            </a>
+            <a class="nav-item" href="/settings">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </div>
+    </nav>
 
-    <main>
-        <header>
-            <div>
-                <h5>Total Balance</h5>
-                <span id="balance">₹0.00</span>
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h1 class="page-title">
+                    <i class="fa-solid fa-money-bill-transfer"></i>
+                    Transaction Manager
+                </h1>
             </div>
-            <div>
-                <h5>Income</h5>
-                <span id="income">₹0.00</span>
-            </div>
-            <div>
-                <h5>Expense</h5>
-                <span id="expense">₹0.00</span>
+            <div class="header-right">
+                <div class="user-info">
+                    <span class="user-name">Welcome, User!</span>
+                    <div class="user-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
             </div>
         </header>
 
-        <section>
-            <h3>Transactions</h3>
-            <ul id="transactionList"></ul>
-            <div id="status"></div>
-        </section>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Balance Summary Cards -->
+            <div class="balance-cards">
+                <div class="balance-card balance-total">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+                    <div class="card-content">
+                        <h5>Total Balance</h5>
+                        <span id="balance" class="amount-large">₹0.00</span>
+                    </div>
+                </div>
+                <div class="balance-card balance-income">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                    </div>
+                    <div class="card-content">
+                        <h5>Total Income</h5>
+                        <span id="income" class="amount-large">₹0.00</span>
+                    </div>
+                </div>
+                <div class="balance-card balance-expense">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-arrow-trend-down"></i>
+                    </div>
+                    <div class="card-content">
+                        <h5>Total Expense</h5>
+                        <span id="expense" class="amount-large">₹0.00</span>
+                    </div>
+                </div>
+            </div>
 
-        <section>
-            <h3>Add Transaction</h3>
+            <!-- Transaction Form Section -->
+            <section class="section-card">
+                <div class="section-header">
+                    <h3><i class="fa-solid fa-plus-circle"></i> Add New Transaction</h3>
+                </div>
 
-            <form id="transactionForm">
-                <div>
-                    <label for="type">
-                        <input type="checkbox" name="type" id="type" />
-                        <div class="option">
-                            <span>Expense</span>
-                            <span>Income</span>
+                <form id="transactionForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="type">Transaction Type</label>
+                            <select name="type" id="type" required>
+                                <option value="expense">Expense</option>
+                                <option value="income">Income</option>
+                            </select>
                         </div>
-                    </label>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select name="category" id="category" required>
+                                <option value="">Select Category</option>
+                                <!-- Options will be populated dynamically -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Transaction Name</label>
+                            <input type="text" name="name" id="name" placeholder="e.g., Grocery Shopping" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount (₹)</label>
+                            <input type="number" name="amount" id="amount" value="" min="0.01" step="0.01"
+                                placeholder="0.00" required />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Transaction Date</label>
+                            <input type="date" name="date" id="date" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="paymentMode">Payment Mode</label>
+                            <select name="paymentMode" id="paymentMode" required>
+                                <option value="">Select Payment Mode</option>
+                                <option value="cash">Cash</option>
+                                <option value="credit-card">Credit Card</option>
+                                <option value="debit-card">Debit Card</option>
+                                <option value="upi">UPI</option>
+                                <option value="net-banking">Net Banking</option>
+                                <option value="wallet">Wallet</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row full-width">
+                        <div class="form-group">
+                            <label for="remarks">Remarks (Optional)</label>
+                            <textarea name="remarks" id="remarks" rows="3"
+                                placeholder="Add any additional notes..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">
+                            <i class="fa-solid fa-check"></i> Add Transaction
+                        </button>
+                        <a href="/assets/FINANCIAL FIT RESULT.pdf" class="btn-export">
+                            <i class="fa-solid fa-file-pdf"></i> Export PDF
+                        </a>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Transactions List Section -->
+            <section class="section-card">
+                <div class="section-header">
+                    <h3><i class="fa-solid fa-list"></i> Recent Transactions</h3>
                 </div>
-                <div>
-                    <label for="name">Name</label>
-                    <input type="text" name="name" required />
-                </div>
-                <div>
-                    <label for="amount">Amount</label>
-                    <input type="number" name="amount" value="0" min="0.01" step="0.01" required />
-                </div>
-                <div>
-                    <label for="date">Date</label>
-                    <input type="date" name="date" required />
-                </div>
-                <button type="submit">Submit</button>
-                <a href="/assets/FINANCIAL FIT RESULT.pdf">Export PDF</a>
-            </form>
-        </section>
-    </main>
+                <div id="status" class="status-message"></div>
+                <ul id="transactionList" class="transaction-list"></ul>
+            </section>
+        </main>
+    </div>
 
     <script src="script.js"></script>
+    <script>
+document.getElementById("transactionForm").addEventListener("submit", async function (e) {
+    e.preventDefault(); // page reload stop
+
+    const data = {
+        transaction_type: document.getElementById("type").value,
+        category: document.getElementById("category").value,
+        transaction_name: document.getElementById("name").value,
+        amount: document.getElementById("amount").value,
+        transaction_date: document.getElementById("date").value,
+        payment_mode: document.getElementById("paymentMode").value,
+        remarks: document.getElementById("remarks").value
+    };
+
+    try {
+        const response = await fetch(
+            "https://REGION-PROJECT.cloudfunctions.net/insertTransaction",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            }
+        );
+
+        if (response.ok) {
+            alert("✅ Transaction saved to Cloud SQL");
+            document.getElementById("transactionForm").reset();
+        } else {
+            alert("❌ Error saving transaction");
+        }
+    } catch (error) {
+        console.error(error);
+        alert("❌ Server error");
+    }
+});
+</script>
+
 </body>
 
 </html>
