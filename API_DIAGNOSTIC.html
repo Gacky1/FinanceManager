@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Diagnostic Tool</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        #output {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .error {
+            border-left-color: #f44336;
+            background: #ffebee;
+        }
+
+        .success {
+            border-left-color: #4CAF50;
+            background: #e8f5e9;
+        }
+
+        .info {
+            border-left-color: #2196F3;
+            background: #e3f2fd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔍 Cloud Run API Diagnostic Tool</h1>
+        <p>This tool will help diagnose why your API isn't working.</p>
+
+        <button onclick="testAPI()">Test API Connection</button>
+        <button onclick="checkCORS()">Check CORS</button>
+        <button onclick="clearOutput()">Clear Output</button>
+
+        <div id="output"></div>
+    </div>
+
+    <script>
+        const API_URL = "https://inserttransaction-505432234681.asia-south1.run.app/";
+        const output = document.getElementById('output');
+
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            output.className = type;
+            output.innerHTML += `[${timestamp}] ${message}\n`;
+        }
+
+        function clearOutput() {
+            output.innerHTML = '';
+            output.className = '';
+        }
+
+        async function testAPI() {
+            clearOutput();
+            log("🚀 Starting API test...", 'info');
+            log(`API Endpoint: ${API_URL}`, 'info');
+
+            const testData = {
+                transaction_type: "expense",
+                category: "food",
+                transaction_name: "API Test Transaction",
+                amount: 99.99,
+                transaction_date: "2026-02-07",
+                payment_mode: "cash",
+                remarks: "Testing API connection"
+            };
+
+            log("\n📤 Sending data:", 'info');
+            log(JSON.stringify(testData, null, 2), 'info');
+
+            try {
+                log("\n⏳ Making fetch request...", 'info');
+
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(testData)
+                });
+
+                log(`\n✅ Response received!`, 'success');
+                log(`Status Code: ${response.status}`, 'success');
+                log(`Status Text: ${response.statusText}`, 'success');
+                log(`OK: ${response.ok}`, 'success');
+
+                const responseText = await response.text();
+                log(`\n📥 Response Body:`, 'success');
+                log(responseText, 'success');
+
+                if (response.ok) {
+                    log("\n🎉 SUCCESS! API is working correctly!", 'success');
+                } else {
+                    log(`\n⚠️ API returned error status ${response.status}`, 'error');
+                }
+
+            } catch (error) {
+                log("\n❌ ERROR OCCURRED:", 'error');
+                log(`Error Type: ${error.name}`, 'error');
+                log(`Error Message: ${error.message}`, 'error');
+                log(`\nFull Error:`, 'error');
+                log(JSON.stringify(error, Object.getOwnPropertyNames(error), 2), 'error');
+
+                // Diagnose the error
+                log("\n🔍 DIAGNOSIS:", 'error');
+
+                if (error.message.includes("Failed to fetch") || error.name === "TypeError") {
+                    log("This is likely a CORS (Cross-Origin Resource Sharing) error.", 'error');
+                    log("\nPossible causes:", 'error');
+                    log("1. Your Cloud Run service doesn't allow requests from file:// protocol", 'error');
+                    log("2. CORS headers are not configured on your Cloud Run endpoint", 'error');
+                    log("3. Network/firewall is blocking the request", 'error');
+                    log("\nSOLUTION:", 'error');
+                    log("Add CORS headers to your Cloud Run service:", 'error');
+                    log("  Access-Control-Allow-Origin: *", 'error');
+                    log("  Access-Control-Allow-Methods: POST, OPTIONS", 'error');
+                    log("  Access-Control-Allow-Headers: Content-Type", 'error');
+                } else if (error.message.includes("NetworkError")) {
+                    log("Network error - cannot reach the server", 'error');
+                    log("Check your internet connection and Cloud Run status", 'error');
+                } else {
+                    log("Unknown error type", 'error');
+                }
+            }
+        }
+
+        async function checkCORS() {
+            clearOutput();
+            log("🔍 Checking CORS configuration...", 'info');
+            log(`Testing OPTIONS request to: ${API_URL}`, 'info');
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: "OPTIONS",
+                    headers: {
+                        "Origin": window.location.origin,
+                        "Access-Control-Request-Method": "POST",
+                        "Access-Control-Request-Headers": "Content-Type"
+                    }
+                });
+
+                log("\n✅ OPTIONS request successful", 'success');
+                log(`Status: ${response.status}`, 'success');
+
+                // Check CORS headers
+                const corsHeaders = {
+                    'Access-Control-Allow-Origin': response.headers.get('Access-Control-Allow-Origin'),
+                    'Access-Control-Allow-Methods': response.headers.get('Access-Control-Allow-Methods'),
+                    'Access-Control-Allow-Headers': response.headers.get('Access-Control-Allow-Headers')
+                };
+
+                log("\n📋 CORS Headers:", 'info');
+                log(JSON.stringify(corsHeaders, null, 2), 'info');
+
+                if (corsHeaders['Access-Control-Allow-Origin']) {
+                    log("\n✅ CORS is configured!", 'success');
+                } else {
+                    log("\n❌ CORS headers are missing!", 'error');
+                    log("Your Cloud Run service needs to return CORS headers", 'error');
+                }
+
+            } catch (error) {
+                log("\n❌ CORS check failed:", 'error');
+                log(error.message, 'error');
+                log("\nThis confirms CORS is not properly configured.", 'error');
+            }
+        }
+
+        // Auto-run test on page load
+        window.addEventListener('load', () => {
+            log("🔧 Diagnostic tool loaded. Click 'Test API Connection' to begin.", 'info');
+        });
+    </script>
+</body>
+
+</html>

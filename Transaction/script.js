@@ -128,7 +128,7 @@ function renderList() {
     return;
   }
 
-  transactions.forEach(({ id, name, amount, date, type, category, paymentMode, remarks }) => {
+  transactions.forEach(({ id, dbId, name, amount, date, type, category, paymentMode, remarks }) => {
     const sign = "income" === type ? 1 : -1;
     const categoryLabel = getCategoryLabel(type, category || "");
     const paymentModeLabel = formatPaymentMode(paymentMode || "");
@@ -153,7 +153,7 @@ function renderList() {
       </div>
     
       <div class="action">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" onclick="deleteTransaction(${id})">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" onclick="deleteTransaction(${id}, ${dbId || 'null'})">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       </div>
@@ -166,46 +166,130 @@ function renderList() {
 renderList();
 updateTotal();
 
-function deleteTransaction(id) {
-  const index = transactions.findIndex((trx) => trx.id === id);
-  transactions.splice(index, 1);
+async function deleteTransaction(id, dbId) {
+  // Confirm deletion
+  if (!confirm("Are you sure you want to delete this transaction?")) {
+    return;
+  }
 
-  updateTotal();
-  saveTransactions();
-  renderList();
+  try {
+    // If we have a database ID, delete from database first
+    if (dbId) {
+      const response = await fetch(
+        `https://deletetransaction-505432234681.europe-west1.run.app/?id=${dbId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
+
+      if (!response.ok) {
+        const error = await response.text();
+        console.error("Delete API Error:", error);
+        alert("❌ Error deleting from database: " + error);
+        return;
+      }
+
+      console.log("Transaction deleted from database");
+    }
+
+    // Remove from local array
+    const index = transactions.findIndex((trx) => trx.id === id);
+    if (index !== -1) {
+      transactions.splice(index, 1);
+    }
+
+    updateTotal();
+    saveTransactions();
+    renderList();
+
+    console.log("Transaction deleted successfully");
+  } catch (error) {
+    console.error("Delete Error:", error);
+    alert("❌ Error deleting transaction: " + error.message);
+  }
 }
 
-function addTransaction(e) {
+async function addTransaction(e) {
   e.preventDefault();
 
   const formData = new FormData(this);
 
-  transactions.push({
-    id: Date.now(), // Use timestamp for better unique IDs
-    name: formData.get("name"),
-    amount: parseFloat(formData.get("amount")),
-    date: new Date(formData.get("date")),
-    type: formData.get("type"),
+  // Prepare data for Cloud SQL API
+  const apiData = {
+    transaction_type: formData.get("type"),
     category: formData.get("category"),
-    paymentMode: formData.get("paymentMode"),
-    remarks: formData.get("remarks") || "",
-  });
+    transaction_name: formData.get("name"),
+    amount: parseFloat(formData.get("amount")),
+    transaction_date: formData.get("date"),
+    payment_mode: formData.get("paymentMode"),
+    remarks: formData.get("remarks") || ""
+  };
 
-  this.reset();
+  try {
+    // Send to Cloud SQL
+    const response = await fetch(
+      "https://inserttransaction-505432234681.asia-south1.run.app/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(apiData)
+      }
+    );
 
-  // Reset date to today after form reset
-  document.getElementById("date").valueAsDate = new Date();
+    if (response.ok) {
+      // Parse response to get database ID
+      const result = await response.json();
+      const dbId = result.id;
 
-  // Reset category options to match default type (expense)
-  updateCategoryOptions();
+      console.log("Transaction saved with DB ID:", dbId);
 
-  updateTotal();
-  saveTransactions();
-  renderList();
+      // Prepare data for local storage and UI
+      const transactionData = {
+        id: Date.now(), // Local ID for UI tracking
+        dbId: dbId, // Database ID for deletion
+        name: formData.get("name"),
+        amount: parseFloat(formData.get("amount")),
+        date: new Date(formData.get("date")),
+        type: formData.get("type"),
+        category: formData.get("category"),
+        paymentMode: formData.get("paymentMode"),
+        remarks: formData.get("remarks") || "",
+      };
+
+      // Success - add to local array and update UI
+      transactions.push(transactionData);
+
+      this.reset();
+
+      // Reset date to today after form reset
+      document.getElementById("date").valueAsDate = new Date();
+
+      // Reset category options to match default type (expense)
+      updateCategoryOptions();
+
+      updateTotal();
+      saveTransactions(); // Also save to localStorage as backup
+      renderList();
+
+      // Show success message
+      alert("✅ Transaction saved to database successfully!");
+    } else {
+      const error = await response.text();
+      alert("❌ Error saving to database: " + error);
+      console.error("API Error:", error);
+    }
+  } catch (error) {
+    console.error("Network Error:", error);
+    alert("❌ Server error. Please check your connection and try again.");
+  }
 }
 
 function saveTransactions() {
   transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
-
   localStorage.setItem("transactions", JSON.stringify(transactions));
 }
