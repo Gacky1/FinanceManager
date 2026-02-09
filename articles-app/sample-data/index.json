@@ -1,0 +1,49 @@
+{
+  "articles": [
+    {
+      "id": "art-001",
+      "title": "Understanding Mutual Funds: A Beginner's Guide",
+      "category": "Investment",
+      "publishedAt": "2026-02-08T10:30:00Z",
+      "filePath": "articles/art-001.json",
+      "author": "Priya Sharma",
+      "excerpt": "Learn the basics of mutual funds and how they can help you build wealth over time."
+    },
+    {
+      "id": "art-002",
+      "title": "Tax-Saving Strategies for 2026",
+      "category": "Tax Planning",
+      "publishedAt": "2026-02-07T14:15:00Z",
+      "filePath": "articles/art-002.json",
+      "author": "Rajesh Kumar",
+      "excerpt": "Maximize your tax savings with these proven strategies and deductions."
+    },
+    {
+      "id": "art-003",
+      "title": "The Rise of Digital Banking in India",
+      "category": "Banking",
+      "publishedAt": "2026-02-06T09:00:00Z",
+      "filePath": "articles/art-003.json",
+      "author": "Anita Desai",
+      "excerpt": "Explore how digital banking is transforming the financial landscape in India."
+    },
+    {
+      "id": "art-004",
+      "title": "Cryptocurrency Investment: Risks and Rewards",
+      "category": "Investment",
+      "publishedAt": "2026-02-05T16:45:00Z",
+      "filePath": "articles/art-004.json",
+      "author": "Vikram Singh",
+      "excerpt": "A comprehensive look at cryptocurrency investments and what you need to know."
+    },
+    {
+      "id": "art-005",
+      "title": "Building an Emergency Fund: Step by Step",
+      "category": "Personal Finance",
+      "publishedAt": "2026-02-04T11:20:00Z",
+      "filePath": "articles/art-005.json",
+      "author": "Meera Patel",
+      "excerpt": "Learn how to build a robust emergency fund to protect your financial future."
+    }
+  ]
+}

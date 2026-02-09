@@ -221,10 +221,14 @@
     </div>
 
     <script>
-        // Mobile menu toggle
+        // DOM Elements
         const mobileMenuBtn = document.getElementById("mobileMenuBtn");
         const sidebar = document.getElementById("sidebar");
+        const profileForm = document.getElementById("profileForm");
+        const preferencesForm = document.getElementById("preferencesForm");
+        const securityForm = document.getElementById("securityForm");
 
+        // Mobile menu toggle
         if (mobileMenuBtn && sidebar) {
             mobileMenuBtn.addEventListener("click", () => {
                 sidebar.classList.toggle("open");
@@ -239,18 +243,80 @@
             });
         }
 
-        // Form submission handlers
-        document.getElementById("profileForm").addEventListener("submit", (e) => {
+        // Load Settings from LocalStorage
+        function loadSettings() {
+            const settings = JSON.parse(localStorage.getItem('userSettings')) || {
+                profile: {
+                    name: 'User',
+                    email: '',
+                    phone: '',
+                    currency: 'INR'
+                },
+                preferences: {
+                    theme: 'light',
+                    language: 'en',
+                    dateFormat: 'yyyy-mm-dd',
+                    notifications: 'all'
+                }
+            };
+
+            // Fill Profile Form
+            document.getElementById('userName').value = settings.profile.name;
+            document.getElementById('userEmail').value = settings.profile.email;
+            document.getElementById('userPhone').value = settings.profile.phone;
+            document.getElementById('currency').value = settings.profile.currency;
+
+            // Fill Preferences Form
+            document.getElementById('theme').value = settings.preferences.theme;
+            document.getElementById('language').value = settings.preferences.language;
+            document.getElementById('dateFormat').value = settings.preferences.dateFormat;
+            document.getElementById('notifications').value = settings.preferences.notifications;
+
+            // Apply Theme
+            applyTheme(settings.preferences.theme);
+        }
+
+        // Apply Theme Logic
+        function applyTheme(theme) {
+            if (theme === 'dark' || (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.body.classList.add('dark-theme');
+            } else {
+                document.body.classList.remove('dark-theme');
+            }
+        }
+
+        // Save Profile
+        profileForm.addEventListener("submit", (e) => {
             e.preventDefault();
+            const settings = JSON.parse(localStorage.getItem('userSettings')) || { profile: {}, preferences: {} };
+            settings.profile = {
+                name: document.getElementById('userName').value,
+                email: document.getElementById('userEmail').value,
+                phone: document.getElementById('userPhone').value,
+                currency: document.getElementById('currency').value
+            };
+            localStorage.setItem('userSettings', JSON.stringify(settings));
             alert("Profile settings saved!");
         });
 
-        document.getElementById("preferencesForm").addEventListener("submit", (e) => {
+        // Save Preferences
+        preferencesForm.addEventListener("submit", (e) => {
             e.preventDefault();
+            const settings = JSON.parse(localStorage.getItem('userSettings')) || { profile: {}, preferences: {} };
+            const theme = document.getElementById('theme').value;
+            settings.preferences = {
+                theme: theme,
+                language: document.getElementById('language').value,
+                dateFormat: document.getElementById('dateFormat').value,
+                notifications: document.getElementById('notifications').value
+            };
+            localStorage.setItem('userSettings', JSON.stringify(settings));
+            applyTheme(theme);
             alert("Preferences saved!");
         });
 
-        document.getElementById("securityForm").addEventListener("submit", (e) => {
+        // Security Form
+        securityForm.addEventListener("submit", (e) => {
             e.preventDefault();
             alert("Password changed successfully!");
         });
@@ -275,9 +341,16 @@
         function clearLocalData() {
             if (confirm("Are you sure you want to clear all local data? This cannot be undone!")) {
                 localStorage.removeItem("transactions");
-                alert("Local data cleared successfully!");
+                localStorage.removeItem("userSettings");
+                localStorage.removeItem("accounts");
+                localStorage.removeItem("budgets");
+                alert("All local data cleared successfully!");
+                location.reload();
             }
         }
+
+        // Initialize
+        loadSettings();
     </script>
 </body>
 

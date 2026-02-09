@@ -1,0 +1,63 @@
+{
+    "id": "art-003",
+    "title": "The Rise of Digital Banking in India",
+    "category": "Banking",
+    "author": "Anita Desai",
+    "publishedAt": "2026-02-06T09:00:00Z",
+    "readTime": "7 min read",
+    "tags": [
+        "digital banking",
+        "fintech",
+        "india",
+        "technology"
+    ],
+    "content": [
+        {
+            "type": "paragraph",
+            "text": "Digital banking has revolutionized the financial landscape in India, making banking services more accessible, convenient, and efficient than ever before. From mobile apps to digital wallets, the transformation is reshaping how Indians manage their money."
+        },
+        {
+            "type": "heading",
+            "text": "The Digital Banking Revolution"
+        },
+        {
+            "type": "paragraph",
+            "text": "India's digital banking sector has witnessed exponential growth in recent years. With the government's push for Digital India and the widespread adoption of smartphones, traditional banking is rapidly evolving into a digital-first experience."
+        },
+        {
+            "type": "heading",
+            "text": "Key Digital Banking Services"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Mobile Banking Apps: Access accounts, transfer funds, and pay bills 24/7",
+                "UPI (Unified Payments Interface): Instant peer-to-peer payments",
+                "Digital Wallets: Paytm, PhonePe, Google Pay for quick transactions",
+                "Online Account Opening: Complete KYC and open accounts digitally",
+                "AI-Powered Chatbots: Get instant customer support and financial advice"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Benefits of Digital Banking"
+        },
+        {
+            "type": "paragraph",
+            "text": "Digital banking offers numerous advantages: 24/7 accessibility, reduced transaction costs, faster processing times, enhanced security features, and personalized financial insights. Customers can perform most banking operations from the comfort of their homes."
+        },
+        {
+            "type": "quote",
+            "text": "Digital banking is not just about technology; it's about financial inclusion and empowering every Indian with access to banking services.",
+            "author": "RBI Governor"
+        },
+        {
+            "type": "heading",
+            "text": "The Future Ahead"
+        },
+        {
+            "type": "paragraph",
+            "text": "As technology continues to advance, we can expect even more innovative solutions like blockchain-based transactions, biometric authentication, and AI-driven financial planning tools. The future of banking in India is undoubtedly digital."
+        }
+    ]
+}

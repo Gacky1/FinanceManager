@@ -1,0 +1,101 @@
+Id,transaction_type,category,transaction_name,amount,transaction_date,payment_mode,remarks,created_at
+1,income,gifts,Refund from Store,31313.82,2026-01-09,other,Received from Refund from Store,1/9/2026 11:48
+2,expense,travel,Online shopping,1134.74,2026-02-03,cash,Spent on Online shopping,2/3/2026 11:42
+3,income,investment,Client Payment,7290.42,2022-06-25,net-banking,Received from Client Payment,6/26/2022 6:52
+4,expense,shopping,Taxi Ride,4678.19,2025-12-17,credit-card,Spent on Taxi Ride,12/17/2025 3:24
+5,income,refunds,Gift from Friend,14752.42,2021-04-27,net-banking,Received from Gift from Friend,4/27/2021 2:50
+6,expense,shopping,Coffee,2743.86,2020-10-03,cash,Spent on Coffee,10/4/2020 1:07
+7,income,refunds,Company Salary,24908.49,2022-09-24,other,Received from Company Salary,9/25/2022 12:04
+8,expense,entertainment,Chicken Biryani,4010.09,2022-03-30,wallet,Spent on Chicken Biryani,3/30/2022 6:54
+9,income,other-income,Gift from Friend,41655.32,2024-05-28,net-banking,Received from Gift from Friend,5/28/2024 8:41
+10,expense,education,Taxi Ride,1051.02,2021-05-03,upi,Spent on Taxi Ride,5/3/2021 9:50
+11,income,Salary,Gift from Friend,43956.39,2022-12-10,wallet,Received from Gift from Friend,12/11/2022 6:08
+12,income,other-income,Refund from Store,3229.58,2020-09-15,wallet,Received from Refund from Store,9/15/2020 9:57
+13,expense,other-expense,Movie Ticket,3960.68,2021-02-09,net-banking,Spent on Movie Ticket,2/9/2021 5:27
+14,expense,health,Coffee,3365.22,2020-02-11,debit-card,Spent on Coffee,2/11/2020 6:36
+15,expense,bill,Movie Ticket,3039.52,2023-06-28,wallet,Spent on Movie Ticket,6/29/2023 10:49
+16,income,other-income,Client Payment,15864.75,2020-06-11,net-banking,Received from Client Payment,6/11/2020 5:20
+17,income,Salary,Gift from Friend,4137.51,2022-12-17,credit-card,Received from Gift from Friend,12/17/2022 12:24
+18,income,Freelance,Stock Profit,19387.48,2020-08-26,net-banking,Received from Stock Profit,8/27/2020 12:40
+19,expense,food,Burger,4639.6,2020-02-09,net-banking,Spent on Burger,2/9/2020 9:42
+20,income,investment,Client Payment,49785.53,2020-05-10,wallet,Received from Client Payment,5/11/2020 1:46
+21,income,other-income,Stock Profit,6617.74,2023-09-11,wallet,Received from Stock Profit,9/11/2023 7:23
+22,expense,travel,Pizza,2133.21,2025-12-27,credit-card,Spent on Pizza,12/27/2025 10:07
+23,expense,shopping,Pizza,2192.98,2024-08-01,cash,Spent on Pizza,8/1/2024 9:03
+24,income,gifts,Gift from Friend,12263.64,2022-05-23,credit-card,Received from Gift from Friend,5/23/2022 10:02
+25,income,refunds,Client Payment,46725,2024-07-13,wallet,Received from Client Payment,7/14/2024 1:07
+26,income,other-income,Company Salary,20276.34,2025-03-29,credit-card,Received from Company Salary,3/30/2025 1:34
+27,income,Freelance,Gift from Friend,29917.48,2022-09-09,debit-card,Received from Gift from Friend,9/9/2022 6:10
+28,expense,Rent,Burger,3042.86,2022-12-13,cash,Spent on Burger,12/13/2022 4:24
+29,income,investment,Gift from Friend,41645.21,2024-12-27,net-banking,Received from Gift from Friend,12/27/2024 2:12
+30,income,investment,Company Salary,27805.03,2020-01-08,wallet,Received from Company Salary,1/8/2020 1:12
+31,income,Salary,Gift from Friend,21311.94,2021-08-30,other,Received from Gift from Friend,8/30/2021 5:39
+32,income,investment,Company Salary,23860.98,2021-02-05,other,Received from Company Salary,2/6/2021 1:38
+33,income,investment,Gift from Friend,40225.85,2023-02-26,net-banking,Received from Gift from Friend,2/27/2023 3:47
+34,income,refunds,Client Payment,35793.57,2022-09-26,cash,Received from Client Payment,9/27/2022 1:17
+35,expense,Transportation,House Rent,2382.86,2022-09-18,other,Spent on House Rent,9/18/2022 7:07
+36,income,Salary,Client Payment,9355.38,2025-09-25,debit-card,Received from Client Payment,9/25/2025 2:45
+37,income,refunds,Stock Profit,9988.15,2020-05-25,credit-card,Received from Stock Profit,5/26/2020 2:01
+38,expense,other-expense,Pizza,4780.43,2025-06-14,upi,Spent on Pizza,6/14/2025 9:10
+39,income,gifts,Company Salary,25095.96,2020-09-09,credit-card,Received from Company Salary,9/10/2020 4:19
+40,income,gifts,Stock Profit,22940.45,2021-07-21,wallet,Received from Stock Profit,7/21/2021 10:14
+41,income,investment,Company Salary,23954.37,2020-01-21,credit-card,Received from Company Salary,1/22/2020 1:46
+42,expense,Rent,Veg Meals,3763.04,2020-10-23,upi,Spent on Veg Meals,10/23/2020 1:50
+43,expense,other-expense,Burger,4940.64,2021-10-23,other,Spent on Burger,10/23/2021 1:21
+44,expense,travel,House Rent,622.26,2025-09-03,cash,Spent on House Rent,9/3/2025 11:30
+45,expense,entertainment,Chicken Biryani,2726.77,2025-06-24,cash,Spent on Chicken Biryani,6/24/2025 3:40
+46,income,Salary,Gift from Friend,36400.19,2025-09-17,debit-card,Received from Gift from Friend,9/17/2025 2:26
+47,expense,other-expense,Veg Meals,3210.21,2022-06-11,cash,Spent on Veg Meals,6/11/2022 2:55
+48,income,investment,Stock Profit,43854.35,2022-06-29,credit-card,Received from Stock Profit,6/29/2022 2:01
+49,income,gifts,Gift from Friend,27552.83,2020-02-09,upi,Received from Gift from Friend,2/9/2020 4:46
+50,expense,health,Burger,750.49,2023-10-31,cash,Spent on Burger,10/31/2023 10:21
+51,expense,Rent,Movie Ticket,4677.66,2020-11-23,other,Spent on Movie Ticket,11/23/2020 4:52
+52,expense,Rent,Chicken Biryani,2000.21,2020-12-24,other,Spent on Chicken Biryani,12/24/2020 9:40
+53,expense,food,Chicken Biryani,1467.69,2021-05-10,net-banking,Spent on Chicken Biryani,5/10/2021 11:37
+54,expense,education,Pizza,3741.05,2024-03-05,net-banking,Spent on Pizza,3/6/2024 6:45
+55,expense,bill,Chicken Biryani,4740.02,2022-02-20,debit-card,Spent on Chicken Biryani,2/20/2022 6:24
+56,income,Salary,Client Payment,34358.93,2020-09-19,credit-card,Received from Client Payment,9/19/2020 12:48
+57,expense,travel,Online shopping,2857.86,2022-03-30,wallet,Spent on Online shopping,3/30/2022 7:13
+58,expense,food,Online shopping,2804.1,2023-05-18,credit-card,Spent on Online shopping,5/18/2023 7:33
+59,expense,bill,Pizza,846.38,2025-01-14,net-banking,Spent on Pizza,1/14/2025 5:04
+60,income,Freelance,Client Payment,13286.83,2024-10-06,cash,Received from Client Payment,10/6/2024 4:00
+61,expense,travel,House Rent,4150.11,2024-02-17,credit-card,Spent on House Rent,2/17/2024 1:48
+62,income,other-income,Refund from Store,9682.89,2021-12-04,debit-card,Received from Refund from Store,12/4/2021 6:03
+63,income,gifts,Company Salary,12288.05,2021-11-02,wallet,Received from Company Salary,11/2/2021 4:54
+64,expense,food,Movie Ticket,3451.63,2022-09-06,net-banking,Spent on Movie Ticket,9/6/2022 9:54
+65,income,other-income,Refund from Store,43346.82,2023-11-03,credit-card,Received from Refund from Store,11/3/2023 11:25
+66,expense,other-expense,Coffee,185.62,2024-09-04,debit-card,Spent on Coffee,9/4/2024 1:59
+67,income,Freelance,Client Payment,36768.83,2021-08-17,wallet,Received from Client Payment,8/17/2021 2:13
+68,income,other-income,Company Salary,16443.24,2022-05-15,other,Received from Company Salary,5/15/2022 4:51
+69,expense,bill,Pizza,3599.69,2020-04-28,net-banking,Spent on Pizza,4/28/2020 10:55
+70,income,Freelance,Stock Profit,9417.49,2020-01-18,upi,Received from Stock Profit,1/18/2020 2:42
+71,expense,education,Taxi Ride,374.82,2022-03-18,other,Spent on Taxi Ride,3/18/2022 9:24
+72,income,refunds,Company Salary,33889.55,2026-01-17,credit-card,Received from Company Salary,1/18/2026 2:27
+73,income,other-income,Client Payment,32282.25,2022-12-17,credit-card,Received from Client Payment,12/17/2022 3:45
+74,income,Salary,Client Payment,32221.9,2025-08-01,debit-card,Received from Client Payment,8/1/2025 12:31
+75,expense,food,Movie Ticket,227.75,2022-01-10,wallet,Spent on Movie Ticket,1/10/2022 6:27
+76,income,Freelance,Stock Profit,46683.17,2021-10-06,debit-card,Received from Stock Profit,10/6/2021 2:57
+77,expense,Transportation,Taxi Ride,4295.85,2023-04-15,other,Spent on Taxi Ride,4/15/2023 10:43
+78,expense,Rent,Movie Ticket,3233.45,2023-07-08,debit-card,Spent on Movie Ticket,7/8/2023 4:42
+79,expense,travel,Coffee,4778.39,2024-04-05,cash,Spent on Coffee,4/5/2024 1:57
+80,expense,health,Coffee,1751,2025-06-12,credit-card,Spent on Coffee,6/12/2025 10:01
+81,expense,bill,Veg Meals,1234.69,2024-06-17,cash,Spent on Veg Meals,6/18/2024 1:50
+82,expense,Rent,Taxi Ride,2728.44,2022-05-05,debit-card,Spent on Taxi Ride,5/5/2022 5:45
+83,expense,other-expense,Pizza,1985.34,2020-07-13,other,Spent on Pizza,7/14/2020 6:39
+84,income,other-income,Gift from Friend,3528.62,2025-10-11,cash,Received from Gift from Friend,10/11/2025 7:21
+85,expense,bill,Online shopping,2181.16,2022-07-22,cash,Spent on Online shopping,7/22/2022 7:00
+86,expense,Transportation,Pizza,2050.46,2023-08-31,wallet,Spent on Pizza,8/31/2023 10:13
+87,expense,shopping,Taxi Ride,3456.39,2022-03-24,net-banking,Spent on Taxi Ride,3/24/2022 3:55
+88,income,other-income,Company Salary,14009.09,2020-09-25,wallet,Received from Company Salary,9/26/2020 9:46
+89,expense,entertainment,Chicken Biryani,1196.69,2021-09-26,cash,Spent on Chicken Biryani,9/26/2021 11:55
+90,expense,education,House Rent,1972.75,2020-07-04,upi,Spent on House Rent,7/4/2020 4:08
+91,expense,travel,Movie Ticket,206.78,2023-06-29,wallet,Spent on Movie Ticket,6/30/2023 3:34
+92,income,Freelance,Refund from Store,21214.02,2023-09-23,credit-card,Received from Refund from Store,9/24/2023 9:39
+93,expense,education,Taxi Ride,251.59,2020-10-19,net-banking,Spent on Taxi Ride,10/19/2020 1:40
+94,expense,Transportation,Veg Meals,3775.92,2024-01-23,cash,Spent on Veg Meals,1/23/2024 9:15
+95,income,refunds,Client Payment,20930.01,2021-06-08,net-banking,Received from Client Payment,6/9/2021 3:20
+96,expense,other-expense,Online shopping,2689.75,2024-10-18,upi,Spent on Online shopping,10/18/2024 11:07
+97,income,other-income,Gift from Friend,15669.5,2023-01-30,wallet,Received from Gift from Friend,1/30/2023 10:57
+98,expense,Transportation,Chicken Biryani,2181.94,2022-07-14,net-banking,Spent on Chicken Biryani,7/14/2022 8:04
+99,expense,Rent,House Rent,984.98,2024-12-09,credit-card,Spent on House Rent,12/9/2024 2:53
+100,income,other-income,Company Salary,17030.75,2025-01-06,upi,Received from Company Salary,1/7/2025 1:49

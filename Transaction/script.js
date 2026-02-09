@@ -3,24 +3,24 @@ const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 // Category definitions based on transaction type
 const categories = {
   income: [
-    { value: "salary", label: "Salary" },
-    { value: "freelance", label: "Freelance" },
-    { value: "investment", label: "Investment Returns" },
-    { value: "gifts", label: "Gifts" },
-    { value: "refunds", label: "Refunds" },
-    { value: "other-income", label: "Other Income" }
+    { value: "Salary", label: "Salary" },
+    { value: "Freelance", label: "Freelance" },
+    { value: "Investment Returns", label: "Investment Returns" },
+    { value: "Gifts", label: "Gifts" },
+    { value: "Refunds", label: "Refunds" },
+    { value: "Other Income", label: "Other Income" }
   ],
   expense: [
-    { value: "food", label: "Food & Dining" },
-    { value: "transport", label: "Transportation" },
-    { value: "rent", label: "Rent" },
-    { value: "health", label: "Health & Medical" },
-    { value: "shopping", label: "Shopping" },
-    { value: "entertainment", label: "Entertainment" },
-    { value: "bills", label: "Bills & Utilities" },
-    { value: "education", label: "Education" },
-    { value: "travel", label: "Travel" },
-    { value: "other-expense", label: "Other Expense" }
+    { value: "Food & Dining", label: "Food & Dining" },
+    { value: "Transportation", label: "Transportation" },
+    { value: "Rent", label: "Rent" },
+    { value: "Health & Medical", label: "Health & Medical" },
+    { value: "Shopping", label: "Shopping" },
+    { value: "Entertainment", label: "Entertainment" },
+    { value: "Bills & Utilities", label: "Bills & Utilities" },
+    { value: "Education", label: "Education" },
+    { value: "Travel", label: "Travel" },
+    { value: "Other Expense", label: "Other Expense" }
   ]
 };
 
@@ -348,4 +348,32 @@ async function addTransaction(e) {
 function saveTransactions() {
   transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
   localStorage.setItem("transactions", JSON.stringify(transactions));
+}
+
+// Delete All Transactions (Local Only)
+async function deleteAllTransactions() {
+  if (transactions.length === 0) {
+    alert("No transactions to delete.");
+    return;
+  }
+
+  if (confirm("⚠️ Are you sure you want to delete ALL transactions from local storage? This cannot be undone.")) {
+    // Second confirmation for safety
+    if (confirm("Final Check: This will wipe your local list. Continue?")) {
+      transactions.length = 0;
+      localStorage.removeItem("transactions");
+
+      updateTotal();
+      renderList();
+
+      console.log("All local transactions cleared");
+      alert("✅ All local transactions have been deleted.");
+    }
+  }
+}
+
+// Register Delete All button
+const deleteAllBtn = document.getElementById("deleteAllBtn");
+if (deleteAllBtn) {
+  deleteAllBtn.addEventListener("click", deleteAllTransactions);
 }

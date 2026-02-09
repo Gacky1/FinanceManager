@@ -1,0 +1,58 @@
+{
+    "id": "art-002",
+    "title": "Tax-Saving Strategies for 2026",
+    "category": "Tax Planning",
+    "author": "Rajesh Kumar",
+    "publishedAt": "2026-02-07T14:15:00Z",
+    "readTime": "10 min read",
+    "tags": [
+        "tax",
+        "savings",
+        "planning",
+        "deductions"
+    ],
+    "content": [
+        {
+            "type": "paragraph",
+            "text": "As the financial year draws to a close, it's crucial to optimize your tax liability. Here are proven strategies to maximize your tax savings in 2026."
+        },
+        {
+            "type": "heading",
+            "text": "Section 80C Deductions"
+        },
+        {
+            "type": "paragraph",
+            "text": "Section 80C allows deductions up to ₹1.5 lakh on various investments and expenses. Popular options include ELSS mutual funds, PPF, EPF, life insurance premiums, and children's tuition fees."
+        },
+        {
+            "type": "heading",
+            "text": "Health Insurance Benefits"
+        },
+        {
+            "type": "paragraph",
+            "text": "Under Section 80D, you can claim deductions for health insurance premiums. The limit is ₹25,000 for self and family, with an additional ₹25,000 for parents (₹50,000 if parents are senior citizens)."
+        },
+        {
+            "type": "list",
+            "items": [
+                "Home loan interest: Deduction up to ₹2 lakh under Section 24",
+                "NPS contributions: Additional ₹50,000 deduction under Section 80CCD(1B)",
+                "Education loan interest: Full deduction under Section 80E",
+                "Donations: 50-100% deduction under Section 80G"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "New vs Old Tax Regime"
+        },
+        {
+            "type": "paragraph",
+            "text": "Calculate your tax liability under both regimes. The new regime offers lower rates but fewer deductions, while the old regime allows more deductions but has higher tax slabs."
+        },
+        {
+            "type": "quote",
+            "text": "A penny saved in tax is a penny earned for your future.",
+            "author": "Financial Proverb"
+        }
+    ]
+}

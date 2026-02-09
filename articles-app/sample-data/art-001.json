@@ -1,0 +1,61 @@
+{
+    "id": "art-001",
+    "title": "Understanding Mutual Funds: A Beginner's Guide",
+    "category": "Investment",
+    "author": "Priya Sharma",
+    "publishedAt": "2026-02-08T10:30:00Z",
+    "readTime": "8 min read",
+    "tags": [
+        "mutual funds",
+        "investment",
+        "beginner"
+    ],
+    "content": [
+        {
+            "type": "paragraph",
+            "text": "Mutual funds have become one of the most popular investment vehicles for individuals looking to grow their wealth. But what exactly are mutual funds, and how do they work?"
+        },
+        {
+            "type": "heading",
+            "text": "What is a Mutual Fund?"
+        },
+        {
+            "type": "paragraph",
+            "text": "A mutual fund is a professionally managed investment vehicle that pools money from multiple investors to purchase a diversified portfolio of stocks, bonds, or other securities. When you invest in a mutual fund, you're buying shares of the fund, and the value of your investment rises or falls based on the performance of the underlying assets."
+        },
+        {
+            "type": "heading",
+            "text": "Types of Mutual Funds"
+        },
+        {
+            "type": "list",
+            "items": [
+                "Equity Funds: Invest primarily in stocks and aim for capital appreciation",
+                "Debt Funds: Focus on fixed-income securities like bonds and treasury bills",
+                "Hybrid Funds: Combine equity and debt investments for balanced growth",
+                "Index Funds: Track a specific market index like the Nifty 50 or Sensex"
+            ]
+        },
+        {
+            "type": "heading",
+            "text": "Benefits of Mutual Funds"
+        },
+        {
+            "type": "paragraph",
+            "text": "Mutual funds offer several advantages: professional management, diversification, liquidity, and affordability. You can start investing with as little as ₹500 per month through SIP (Systematic Investment Plan)."
+        },
+        {
+            "type": "quote",
+            "text": "The best time to start investing was yesterday. The second best time is today.",
+            "author": "Investment Wisdom"
+        },
+        {
+            "type": "heading",
+            "text": "Getting Started"
+        },
+        {
+            "type": "paragraph",
+            "text": "To begin your mutual fund journey, complete your KYC (Know Your Customer) verification, choose funds based on your risk appetite and financial goals, and consider starting with a SIP for disciplined investing."
+        }
+    ]
+}

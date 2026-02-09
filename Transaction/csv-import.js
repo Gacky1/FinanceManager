@@ -1,7 +1,7 @@
 // CSV Import Handler
 class CSVImporter {
     constructor() {
-        this.apiEndpoint = 'https://importtransactions-505432234681.asia-south1.run.app/';
+        this.apiEndpoint = 'https://cloud-import-505432234681.asia-south1.run.app';
     }
 
     // Parse CSV content
@@ -81,6 +81,42 @@ class CSVImporter {
         return result;
     }
 
+    // Normalize date to YYYY-MM-DD
+    normalizeDate(dateStr) {
+        if (!dateStr) return '';
+
+        // Remove time part if exists (e.g., "1/9/2026 6:41" -> "1/9/2026")
+        const datePart = dateStr.split(' ')[0].trim();
+
+        // Try parsing with Date object (handles common formats like M/D/YYYY)
+        const date = new Date(datePart);
+
+        if (!isNaN(date.getTime())) {
+            const yyyy = date.getFullYear();
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
+            const dd = String(date.getDate()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd}`;
+        }
+
+        // Fallback for manually parsing common formats if Date fails
+        // Matches D/M/YYYY or M/D/YYYY
+        const parts = datePart.split(/[\/\-]/);
+        if (parts.length === 3) {
+            let [p1, p2, p3] = parts;
+            // Assume if p3 is 4 digits, it's the year
+            if (p3.length === 4) {
+                // If it's already YYYY-MM-DD, return it
+                if (p1.length === 4) return `${p1}-${p2.padStart(2, '0')}-${p3.padStart(2, '0')}`;
+
+                // Assume p1/p2 is M/D or D/M
+                // JS Date handled M/D/YYYY above, so we'll just return what Date gave if it worked.
+                // If we're here, we can't be sure, so we return the best guess or the original for the regex to catch
+            }
+        }
+
+        return datePart;
+    }
+
     // Validate transaction data
     validateTransaction(transaction, rowNumber) {
         if (!transaction.transaction_type) {
@@ -103,29 +139,43 @@ class CSVImporter {
             throw new Error('transaction_date is required');
         }
 
+        // Normalize date to YYYY-MM-DD
+        const normalizedDate = this.normalizeDate(transaction.transaction_date);
+
         // Validate date format (YYYY-MM-DD)
         const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-        if (!dateRegex.test(transaction.transaction_date)) {
-            throw new Error(`Invalid date format: ${transaction.transaction_date}. Expected YYYY-MM-DD`);
+        if (!dateRegex.test(normalizedDate)) {
+            throw new Error(`Invalid date format: ${transaction.transaction_date}. Expected YYYY-MM-DD or readable date.`);
         }
+
+        // Update transaction with normalized date
+        transaction.transaction_date = normalizedDate;
     }
 
     // Upload transactions to database
     async uploadToDatabase(transactions) {
-        const response = await fetch(this.apiEndpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ transactions })
-        });
+        try {
+            const response = await fetch(this.apiEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ transactions })
+            });
 
-        if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.error || 'Failed to upload transactions');
+            const result = await response.json();
+
+            if (!response.ok) {
+                // Return detailed server error if available
+                const errorMsg = result.message || result.error || 'Failed to upload transactions';
+                throw new Error(`Server Error: ${errorMsg}`);
+            }
+
+            return result;
+        } catch (error) {
+            console.error('Upload error details:', error);
+            throw error;
         }
-
-        return await response.json();
     }
 
     // Add transactions to localStorage

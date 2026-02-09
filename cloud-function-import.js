@@ -49,43 +49,49 @@ exports.importTransactions = async (req, res) => {
         // Begin transaction for atomic insert
         await connection.beginTransaction();
 
-        const insertedIds = [];
-        const insertPromises = transactions.map(async (txn) => {
-            const [result] = await connection.execute(
-                `INSERT INTO transactions
-                (transaction_type, category, transaction_name, amount, transaction_date, payment_mode, remarks)
-                VALUES (?, ?, ?, ?, ?, ?, ?)`,
-                [
-                    txn.transaction_type,
-                    txn.category || '',
-                    txn.transaction_name,
-                    parseFloat(txn.amount),
-                    txn.transaction_date,
-                    txn.payment_mode || '',
-                    txn.remarks || ''
-                ]
-            );
-            return result.insertId;
-        });
+        try {
+            // Prepare bulk insert query
+            const sql = `INSERT INTO transactions 
+                (transaction_type, category, transaction_name, amount, transaction_date, payment_mode, remarks) 
+                VALUES ?`;
 
-        const ids = await Promise.all(insertPromises);
-        insertedIds.push(...ids);
+            // Format data for mysql2 bulk insert: [[val1, val2...], [val1, val2...]]
+            const values = transactions.map(txn => [
+                txn.transaction_type,
+                txn.category || '',
+                txn.transaction_name,
+                parseFloat(txn.amount),
+                txn.transaction_date,
+                txn.payment_mode || '',
+                txn.remarks || ''
+            ]);
 
-        // Commit transaction
-        await connection.commit();
-        await connection.end();
+            const [result] = await connection.query(sql, [values]);
 
-        res.status(200).json({
-            message: `Successfully imported ${insertedIds.length} transactions`,
-            count: insertedIds.length,
-            ids: insertedIds
-        });
+            // We need to return an array of IDs. Since it's a bulk insert, 
+            // result.insertId is the FIRST ID, and they are usually sequential.
+            const firstId = result.insertId;
+            const ids = Array.from({ length: result.affectedRows }, (_, i) => firstId + i);
 
+            // Commit transaction
+            await connection.commit();
+            await connection.end();
+
+            res.status(200).json({
+                message: `Successfully imported ${result.affectedRows} transactions`,
+                count: result.affectedRows,
+                ids: ids
+            });
+        } catch (insertError) {
+            await connection.rollback();
+            throw insertError;
+        }
     } catch (err) {
         console.error("DB ERROR:", err);
         res.status(500).json({
             error: "Database error",
-            message: err.message
+            message: err.message,
+            stack: err.stack
         });
     }
 };

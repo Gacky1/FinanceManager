@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Financial articles and insights to help you make informed decisions">
+    <title>Financial Articles Hub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="cursor"></div>
+    <div id="purple"></div>
+    <!-- Navigation -->
+    <nav>
+        <img src="/assets/logo white.png" alt="LOGO">
+        <div id="nav2">
+            <h4><a href="../Try/index.html#Home">Home</a></h4>
+            <h4><a href="index.html">Learn</a></h4>
+            <h4><a href="http://localhost:8501/" target="_blank">Loan/Finance</a></h4>
+            <h4><a href="/Contact/index.html">Contact</a></h4>
+        </div>
+        <div id="nav3">
+            <a href="/Login/Login/index.html">
+                <div class="circle"></div>
+            </a>
+        </div>
+    </nav>
+
+    <div class="main-wrapper">
+        <!-- Header -->
+        <header class="hero-header">
+            <div class="container">
+                <div class="header-content">
+                    <h1 class="logo-title">Financial Fit Hub</h1>
+                    <p class="tagline">Expert insights for your financial journey</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="container">
+                <!-- Articles List View -->
+                <section id="articlesListSection" class="articles-section">
+                    <div class="section-header">
+                        <h2>Latest Articles</h2>
+                        <div class="filter-group">
+                            <select id="categoryFilter" class="filter-select">
+                                <option value="all">All Categories</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div id="loadingState" class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Loading articles...</p>
+                    </div>
+
+                    <!-- Error State -->
+                    <div id="errorState" class="error-state" style="display: none;">
+                        <svg class="error-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        <h3>Failed to load articles</h3>
+                        <p id="errorMessage">Please check your connection and try again.</p>
+                        <button id="retryButton" class="btn-retry">Retry</button>
+                    </div>
+
+                    <!-- Articles Grid -->
+                    <div id="articlesGrid" class="articles-grid" style="display: none;"></div>
+                </section>
+
+                <!-- Article Detail View -->
+                <section id="articleDetailSection" class="article-detail-section" style="display: none;">
+                    <button id="backButton" class="btn-back">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"></path>
+                        </svg>
+                        Back to Articles
+                    </button>
+
+                    <!-- Article Loading State -->
+                    <div id="articleLoadingState" class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Loading article...</p>
+                    </div>
+
+                    <!-- Article Content -->
+                    <article id="articleContent" class="article-content" style="display: none;"></article>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col">
+                    <img src="/assets/Logo.jpg" alt="Logo" class="logo">
+                    <h2>FinancialFit</h2>
+                    <p class="desc">Connect with us on our social media and join us in this amazing jouney of managing
+                        your budget and tracking your Expense</p>
+                </div>
+                <div class="col">
+                    <h3>Locate Us! <div class="underline"><span></span></div>
+                    </h3>
+                    <p>Jecrc Foundation</p>
+                    <p>Sitapura</p>
+                    <p>Jaipur,Raj-3020xx</p>
+                    <p class="email">financialfit@proton.me</p>
+                    <a class="direction" href="https://maps.app.goo.gl/kzyV7FURDRTKs4269">Directions!<i
+                            class="fa-solid fa-diamond-turn-right"></i></a>
+                </div>
+                <div class="col">
+                    <h3>Links<div class="underline"><span></span></div>
+                    </h3>
+                    <ul>
+                        <li><a href="../Try/index.html">Home</a></li>
+                        <li><a href="">About Us!</a></li>
+                        <li><a href="index.html">Learn</a></li>
+                        <li><a href="">Login</a></li>
+                        <li><a href="">Sign Up</a></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h3>NewsLetter<div class="underline"><span></span></div>
+                    </h3>
+                    <form action="">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" placeholder="Enter Email" id="">
+                        <button>
+                            <p>Subscribe</p>
+                            <svg stroke-width="4" stroke="currentColor" viewBox="0 0 24 24" fill="none" class="h-6 w-6"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linejoin="round" stroke-linecap="round">
+                                </path>
+                            </svg>
+                        </button>
+                    </form>
+                    <div class="social">
+                        <a href=""><i class="fab fa-whatsapp"></i></a>
+                        <a href=""><i class="fab fa-instagram"></i></a>
+                        <a href=""><i class="fab fa-brands fa-discord"></i></a>
+                        <a href=""><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Financially Fit &copy 2023- All Rights Reserved;</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
