@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budget - FinancialFit</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="/assets/logo white.png" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/f5a9ff35dc.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Navigation Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-coins"></i>
+                <span class="logo-text">FinancialFit</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div class="nav-menu">
+            <a class="nav-item" href="dashboard.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-item" href="index.html">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>Transactions</span>
+            </a>
+            <a class="nav-item" href="accounts.html">
+                <i class="fa-solid fa-wallet"></i>
+                <span>Accounts</span>
+            </a>
+            <a class="nav-item" href="reports.html">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Reports</span>
+            </a>
+            <a class="nav-item active" href="budget.html">
+                <i class="fa-solid fa-shopping-basket"></i>
+                <span>Budget</span>
+            </a>
+            <a class="nav-item" href="settings.html">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h1 class="page-title">
+                    <i class="fa-solid fa-shopping-basket"></i>
+                    Budget
+                </h1>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span class="user-name">Welcome, User!</span>
+                    <div class="user-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Budget Overview Cards -->
+            <div class="balance-cards">
+                <div class="balance-card balance-total">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+                    <div class="card-content">
+                        <h5>Monthly Budget</h5>
+                        <span id="monthlyBudget" class="amount-large">₹0.00</span>
+                    </div>
+                </div>
+                <div class="balance-card balance-expense">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </div>
+                    <div class="card-content">
+                        <h5>Spent This Month</h5>
+                        <span id="spentThisMonth" class="amount-large">₹0.00</span>
+                    </div>
+                </div>
+                <div class="balance-card balance-income">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div class="card-content">
+                        <h5>Remaining</h5>
+                        <span id="remaining" class="amount-large">₹0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create Budget Section -->
+            <section class="section-card">
+                <div class="section-header">
+                    <h3><i class="fa-solid fa-plus-circle"></i> Create Budget</h3>
+                </div>
+
+                <form id="budgetForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="budgetCategory">Category</label>
+                            <select name="budgetCategory" id="budgetCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="food">Food & Dining</option>
+                                <option value="transport">Transportation</option>
+                                <option value="rent">Rent</option>
+                                <option value="health">Health & Medical</option>
+                                <option value="shopping">Shopping</option>
+                                <option value="entertainment">Entertainment</option>
+                                <option value="bills">Bills & Utilities</option>
+                                <option value="education">Education</option>
+                                <option value="travel">Travel</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budgetAmount">Budget Amount (₹)</label>
+                            <input type="number" name="budgetAmount" id="budgetAmount" value="" min="0" step="0.01"
+                                placeholder="0.00" required />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="budgetPeriod">Period</label>
+                            <select name="budgetPeriod" id="budgetPeriod" required>
+                                <option value="monthly">Monthly</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="yearly">Yearly</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budgetAlert">Alert at (%)</label>
+                            <input type="number" name="budgetAlert" id="budgetAlert" value="80" min="0" max="100"
+                                placeholder="80" />
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">
+                            <i class="fa-solid fa-check"></i> Create Budget
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Budget Categories Section -->
+            <section class="section-card">
+                <div class="section-header">
+                    <h3><i class="fa-solid fa-list"></i> Budget Categories</h3>
+                </div>
+                <ul id="budgetsList" class="transaction-list"></ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="budget.js"></script>
+</body>
+
+</html>

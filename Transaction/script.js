@@ -58,6 +58,62 @@ if (mobileMenuBtn && sidebar) {
   });
 }
 
+// CSV Import functionality
+const csvFileInput = document.getElementById("csvFileInput");
+const fileNameDisplay = document.getElementById("fileName");
+const importStatus = document.getElementById("importStatus");
+
+if (csvFileInput) {
+  csvFileInput.addEventListener("change", async (e) => {
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    // Display file name
+    fileNameDisplay.textContent = file.name;
+    importStatus.innerHTML = '<div class="status-loading"><i class="fa-solid fa-spinner fa-spin"></i> Processing CSV file...</div>';
+
+    try {
+      const importer = new CSVImporter();
+      const result = await importer.importFromCSV(file);
+
+      // Update the transactions array
+      transactions.length = 0;
+      transactions.push(...result.transactions);
+
+      // Update UI
+      updateTotal();
+      renderList();
+
+      // Show success message
+      let message = `✅ Successfully imported ${result.count} transactions!`;
+      if (result.warnings && result.warnings.length > 0) {
+        message += `\n\nWarnings:\n${result.warnings.slice(0, 5).join('\n')}`;
+        if (result.warnings.length > 5) {
+          message += `\n... and ${result.warnings.length - 5} more warnings`;
+        }
+      }
+
+      importStatus.innerHTML = `<div class="status-success"><i class="fa-solid fa-check-circle"></i> ${message.replace(/\n/g, '<br>')}</div>`;
+
+      // Clear file input
+      csvFileInput.value = '';
+      setTimeout(() => {
+        fileNameDisplay.textContent = '';
+        importStatus.innerHTML = '';
+      }, 10000);
+
+    } catch (error) {
+      console.error("Import Error:", error);
+      importStatus.innerHTML = `<div class="status-error"><i class="fa-solid fa-exclamation-circle"></i> Error: ${error.message}</div>`;
+
+      // Clear file input
+      csvFileInput.value = '';
+      fileNameDisplay.textContent = '';
+    }
+  });
+}
+
 // Initialize form
 form.addEventListener("submit", addTransaction);
 typeSelect.addEventListener("change", updateCategoryOptions);

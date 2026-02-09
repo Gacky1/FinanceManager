@@ -1,13 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="../assets/Logo.jpg" type="image/x-icon">
-    <title>Financial Fit Dashboard</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - FinancialFit</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="/assets/logo white.png" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/f5a9ff35dc.js" crossorigin="anonymous"></script>
+    <style>
+        /* Dashboard-specific styles */
+        .dashboard-container {
+            width: 100%;
+            height: calc(100vh - var(--header-height));
+            overflow: hidden;
+        }
+
+        .dashboard-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Adjust main content for dashboard */
+        .main-content.dashboard {
+            padding: 0;
+            max-width: none;
+            height: calc(100vh - var(--header-height));
+        }
+    </style>
 </head>
+
 <body>
-    <iframe width="1920" height="1080" src="https://lookerstudio.google.com/embed/reporting/4cacaa18-dcc4-493e-b2ce-3f8460c7d8a4/page/YFrnF" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+    <!-- Navigation Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-coins"></i>
+                <span class="logo-text">FinancialFit</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div class="nav-menu">
+            <a class="nav-item active" href="dashboard.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-item" href="index.html">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>Transactions</span>
+            </a>
+            <a class="nav-item" href="/accounts">
+                <i class="fa-solid fa-wallet"></i>
+                <span>Accounts</span>
+            </a>
+            <a class="nav-item" href="/reports">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Reports</span>
+            </a>
+            <a class="nav-item" href="/budget">
+                <i class="fa-solid fa-shopping-basket"></i>
+                <span>Budget</span>
+            </a>
+            <a class="nav-item" href="/settings">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h1 class="page-title">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Dashboard
+                </h1>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span class="user-name">Welcome, User!</span>
+                    <div class="user-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content dashboard">
+            <div class="dashboard-container">
+                <iframe class="dashboard-iframe"
+                    src="https://lookerstudio.google.com/embed/reporting/4cacaa18-dcc4-493e-b2ce-3f8460c7d8a4/page/YFrnF"
+                    allowfullscreen
+                    sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+                </iframe>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const sidebar = document.getElementById("sidebar");
+
+        if (mobileMenuBtn && sidebar) {
+            mobileMenuBtn.addEventListener("click", () => {
+                sidebar.classList.toggle("open");
+            });
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener("click", (e) => {
+                if (window.innerWidth <= 1024) {
+                    if (!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                        sidebar.classList.remove("open");
+                    }
+                }
+            });
+        }
+    </script>
 </body>
+
 </html>

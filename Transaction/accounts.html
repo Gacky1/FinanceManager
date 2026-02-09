@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accounts - FinancialFit</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="/assets/logo white.png" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/f5a9ff35dc.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Navigation Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-coins"></i>
+                <span class="logo-text">FinancialFit</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div class="nav-menu">
+            <a class="nav-item" href="dashboard.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-item" href="index.html">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>Transactions</span>
+            </a>
+            <a class="nav-item active" href="accounts.html">
+                <i class="fa-solid fa-wallet"></i>
+                <span>Accounts</span>
+            </a>
+            <a class="nav-item" href="reports.html">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Reports</span>
+            </a>
+            <a class="nav-item" href="budget.html">
+                <i class="fa-solid fa-shopping-basket"></i>
+                <span>Budget</span>
+            </a>
+            <a class="nav-item" href="settings.html">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h1 class="page-title">
+                    <i class="fa-solid fa-wallet"></i>
+                    Accounts
+                </h1>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span class="user-name">Welcome, User!</span>
+                    <div class="user-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Account Summary Cards -->
+            <div class="balance-cards">
+                <div class="balance-card balance-total">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+                    <div class="card-content">
+                        <h5>Total Balance</h5>
+                        <span id="totalBalance" class="amount-large">₹0.00</span>
+                    </div>
+                </div>
+                <div class="balance-card balance-income">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-credit-card"></i>
+                    </div>
+                    <div class="card-content">
+                        <h5>Active Accounts</h5>
+                        <span id="activeAccounts" class="amount-large">0</span>
+                    </div>
+                </div>
+                <div class="balance-card balance-expense">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-piggy-bank"></i>
+                    </div>
+                    <div class="card-content">
+                        <h5>Savings</h5>
+                        <span id="savingsBalance" class="amount-large">₹0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Account Section -->
+            <section class="section-card">
+                <div class="section-header">
+                    <h3><i class="fa-solid fa-plus-circle"></i> Add New Account</h3>
+                </div>
+
+                <form id="accountForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="accountName">Account Name</label>
+                            <input type="text" name="accountName" id="accountName" placeholder="e.g., HDFC Savings"
+                                required />
+                        </div>
+                        <div class="form-group">
+                            <label for="accountType">Account Type</label>
+                            <select name="accountType" id="accountType" required>
+                                <option value="">Select Type</option>
+                                <option value="savings">Savings Account</option>
+                                <option value="current">Current Account</option>
+                                <option value="credit">Credit Card</option>
+                                <option value="wallet">Digital Wallet</option>
+                                <option value="cash">Cash</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="balance">Current Balance (₹)</label>
+                            <input type="number" name="balance" id="balance" value="" min="0" step="0.01"
+                                placeholder="0.00" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="bankName">Bank/Provider</label>
+                            <input type="text" name="bankName" id="bankName" placeholder="e.g., HDFC Bank" />
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">
+                            <i class="fa-solid fa-check"></i> Add Account
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Accounts List Section -->
+            <section class="section-card">
+                <div class="section-header">
+                    <h3><i class="fa-solid fa-list"></i> Your Accounts</h3>
+                </div>
+                <ul id="accountsList" class="transaction-list"></ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="accounts.js"></script>
+</body>
+
+</html>

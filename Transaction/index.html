@@ -27,23 +27,23 @@
                 <i class="fa-solid fa-chart-line"></i>
                 <span>Dashboard</span>
             </a>
-            <a class="nav-item active" href="/Transaction/index.html">
+            <a class="nav-item active" href="index.html">
                 <i class="fa-solid fa-cash-register"></i>
                 <span>Transactions</span>
             </a>
-            <a class="nav-item" href="/accounts">
+            <a class="nav-item" href="accounts.html">
                 <i class="fa-solid fa-wallet"></i>
                 <span>Accounts</span>
             </a>
-            <a class="nav-item" href="/reports">
+            <a class="nav-item" href="reports.html">
                 <i class="fa-solid fa-file-lines"></i>
                 <span>Reports</span>
             </a>
-            <a class="nav-item" href="/budget">
+            <a class="nav-item" href="budget.html">
                 <i class="fa-solid fa-shopping-basket"></i>
                 <span>Budget</span>
             </a>
-            <a class="nav-item" href="/settings">
+            <a class="nav-item" href="settings.html">
                 <i class="fa-solid fa-gear"></i>
                 <span>Settings</span>
             </a>
@@ -105,6 +105,34 @@
                     </div>
                 </div>
             </div>
+
+            <!-- CSV Import Section -->
+            <section class="section-card">
+                <div class="section-header">
+                    <h3><i class="fa-solid fa-file-import"></i> Import from CSV</h3>
+                </div>
+
+                <div class="import-container">
+                    <div class="import-info">
+                        <p><i class="fa-solid fa-info-circle"></i> Upload a CSV file with your transactions. The file
+                            should include columns: <code>transaction_type</code>, <code>category</code>,
+                            <code>transaction_name</code>, <code>amount</code>, <code>transaction_date</code>,
+                            <code>payment_mode</code>, <code>remarks</code>
+                        </p>
+                    </div>
+
+                    <div class="import-actions">
+                        <input type="file" id="csvFileInput" accept=".csv" style="display: none;" />
+                        <button type="button" class="btn-import"
+                            onclick="document.getElementById('csvFileInput').click()">
+                            <i class="fa-solid fa-upload"></i> Choose CSV File
+                        </button>
+                        <span id="fileName" class="file-name"></span>
+                    </div>
+
+                    <div id="importStatus" class="import-status"></div>
+                </div>
+            </section>
 
             <!-- Transaction Form Section -->
             <section class="section-card">
@@ -192,6 +220,7 @@
         </main>
     </div>
 
+    <script src="csv-import.js"></script>
     <script src="script.js"></script>
 </body>
 

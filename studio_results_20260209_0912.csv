@@ -1,0 +1,5 @@
+"id","transaction_type","category","transaction_name","amount","transaction_date","payment_mode","remarks","created_at"
+"7","income","salary","Salary","25000.00","2026-02-07","net-banking","Salary aagyi","2026-02-07 09:44:21"
+"8","expense","rent","Rent Mumbai","7500.00","2026-02-07","upi","A-202","2026-02-07 09:44:38"
+"10","expense","transport","Home to LTi","6000.00","2026-02-07","upi","Rapido","2026-02-07 10:41:36"
+"11","expense","food","Dani's Farewell","1000.00","2026-02-08","other","Loan from Anusha","2026-02-07 11:17:51"

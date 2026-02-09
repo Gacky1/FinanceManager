@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reports - FinancialFit</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="/assets/logo white.png" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/f5a9ff35dc.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Navigation Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-coins"></i>
+                <span class="logo-text">FinancialFit</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div class="nav-menu">
+            <a class="nav-item" href="dashboard.html">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-item" href="index.html">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>Transactions</span>
+            </a>
+            <a class="nav-item" href="accounts.html">
+                <i class="fa-solid fa-wallet"></i>
+                <span>Accounts</span>
+            </a>
+            <a class="nav-item active" href="reports.html">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Reports</span>
+            </a>
+            <a class="nav-item" href="budget.html">
+                <i class="fa-solid fa-shopping-basket"></i>
+                <span>Budget</span>
+            </a>
+            <a class="nav-item" href="settings.html">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <h1 class="page-title">
+                    <i class="fa-solid fa-file-lines"></i>
+                    Reports
+                </h1>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span class="user-name">Welcome, User!</span>
+                    <div class="user-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Report Type Cards -->
+            <div class="balance-cards">
+                <div class="balance-card balance-total">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </div>
+                    <div class="card-content">
+                        <h5>Monthly Report</h5>
+                        <span class="amount-large">PDF</span>
+                    </div>
+                </div>
+                <div class="balance-card balance-income">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-file-excel"></i>
+                    </div>
+                    <div class="card-content">
+                        <h5>Export Data</h5>
+                        <span class="amount-large">CSV</span>
+                    </div>
+                </div>
+                <div class="balance-card balance-expense">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <div class="card-content">
+                        <h5>Analytics</h5>
+                        <span class="amount-large">View</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Generate Report Section -->
+            <section class="section-card">
+                <div class="section-header">
+                    <h3><i class="fa-solid fa-file-circle-plus"></i> Generate Report</h3>
+                </div>
+
+                <form id="reportForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reportType">Report Type</label>
+                            <select name="reportType" id="reportType" required>
+                                <option value="">Select Type</option>
+                                <option value="income-expense">Income vs Expense</option>
+                                <option value="category">Category Breakdown</option>
+                                <option value="monthly">Monthly Summary</option>
+                                <option value="yearly">Yearly Summary</option>
+                                <option value="tax">Tax Report</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="reportFormat">Format</label>
+                            <select name="reportFormat" id="reportFormat" required>
+                                <option value="pdf">PDF</option>
+                                <option value="csv">CSV</option>
+                                <option value="excel">Excel</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="startDate">Start Date</label>
+                            <input type="date" name="startDate" id="startDate" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="endDate">End Date</label>
+                            <input type="date" name="endDate" id="endDate" required />
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">
+                            <i class="fa-solid fa-download"></i> Generate Report
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Quick Reports Section -->
+            <section class="section-card">
+                <div class="section-header">
+                    <h3><i class="fa-solid fa-bolt"></i> Quick Reports</h3>
+                </div>
+
+                <div class="form-row">
+                    <button class="btn-export" onclick="generateThisMonth()">
+                        <i class="fa-solid fa-calendar-day"></i> This Month
+                    </button>
+                    <button class="btn-export" onclick="generateLastMonth()">
+                        <i class="fa-solid fa-calendar-minus"></i> Last Month
+                    </button>
+                </div>
+                <div class="form-row" style="margin-top: 1rem;">
+                    <button class="btn-export" onclick="generateThisYear()">
+                        <i class="fa-solid fa-calendar-year"></i> This Year
+                    </button>
+                    <button class="btn-export" onclick="generateCustomRange()">
+                        <i class="fa-solid fa-calendar-range"></i> Custom Range
+                    </button>
+                </div>
+            </section>
+
+            <!-- Recent Reports Section -->
+            <section class="section-card">
+                <div class="section-header">
+                    <h3><i class="fa-solid fa-clock-rotate-left"></i> Recent Reports</h3>
+                </div>
+                <div id="recentReportsList" class="status-message">
+                    <i class="fa-solid fa-info-circle"></i> Reports will be generated based on your transactions.
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="reports.js"></script>
+</body>
+
+</html>
