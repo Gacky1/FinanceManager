@@ -273,6 +273,24 @@ async function addTransaction(e) {
 
   const formData = new FormData(this);
 
+  // Check for duplicate transaction
+  const isDuplicate = transactions.some(t => {
+    // Create dates for comparison (ignoring time components if any)
+    const existingDate = new Date(t.date).toDateString();
+    const newDate = new Date(formData.get("date")).toDateString();
+
+    return t.category === formData.get("category") &&
+      Math.abs(t.amount - parseFloat(formData.get("amount"))) < 0.01 &&
+      existingDate === newDate &&
+      t.paymentMode === formData.get("paymentMode");
+  });
+
+  if (isDuplicate) {
+    if (!confirm("⚠️ Duplicate Transaction Detected!\n\nA transaction with the same details (Category, Date, Amount, Payment Mode) already exists.\n\nDo you want to add it anyway?")) {
+      return;
+    }
+  }
+
   // Prepare data for Cloud SQL API
   const apiData = {
     transaction_type: formData.get("type"),
