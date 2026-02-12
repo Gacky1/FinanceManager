@@ -4,29 +4,30 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard - FinancialFit</title>
+    <title>Batch Data Dashboard - FinancialFit</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" href="/assets/logo white.png" type="image/x-icon" />
     <script src="https://kit.fontawesome.com/f5a9ff35dc.js" crossorigin="anonymous"></script>
     <style>
-        /* Dashboard-specific styles */
-        .dashboard-container {
+        .iframe-container {
+            position: relative;
             width: 100%;
-            height: calc(100vh - var(--header-height));
+            height: 0;
+            padding-bottom: 56.25%;
+            /* 16:9 Aspect Ratio */
+            background: #f1f5f9;
+            border-radius: 1rem;
             overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        .dashboard-iframe {
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            border: none;
-        }
-
-        /* Adjust main content for dashboard */
-        .main-content.dashboard {
-            padding: 0;
-            max-width: none;
-            height: calc(100vh - var(--header-height));
+            border: 0;
         }
     </style>
 </head>
@@ -44,15 +45,19 @@
             </button>
         </div>
         <div class="nav-menu">
-            <a class="nav-item active" href="dashboard.html">
+            <a class="nav-item" href="dashboard.html">
                 <i class="fa-solid fa-chart-line"></i>
                 <span>Dashboard</span>
+            </a>
+            <a class="nav-item" href="index.html">
+                <i class="fa-solid fa-cash-register"></i>
+                <span>Transactions</span>
             </a>
             <a class="nav-item" href="upload.html">
                 <i class="fa-solid fa-cloud-upload"></i>
                 <span>Upload Batch</span>
             </a>
-            <a class="nav-item" href="batch_dashboard.html">
+            <a class="nav-item active" href="batch_dashboard.html">
                 <i class="fa-solid fa-chart-pie"></i>
                 <span>Batch Dashboard</span>
             </a>
@@ -60,15 +65,15 @@
                 <i class="fa-solid fa-wallet"></i>
                 <span>Accounts</span>
             </a>
-            <a class="nav-item" href="/reports">
+            <a class="nav-item" href="reports.html">
                 <i class="fa-solid fa-file-lines"></i>
                 <span>Reports</span>
             </a>
-            <a class="nav-item" href="/budget">
+            <a class="nav-item" href="budget.html">
                 <i class="fa-solid fa-shopping-basket"></i>
                 <span>Budget</span>
             </a>
-            <a class="nav-item" href="/settings">
+            <a class="nav-item" href="settings.html">
                 <i class="fa-solid fa-gear"></i>
                 <span>Settings</span>
             </a>
@@ -84,8 +89,8 @@
                     <i class="fa-solid fa-bars"></i>
                 </button>
                 <h1 class="page-title">
-                    <i class="fa-solid fa-chart-line"></i>
-                    Dashboard
+                    <i class="fa-solid fa-chart-pie"></i>
+                    Batch Data Dashboard
                 </h1>
             </div>
             <div class="header-right">
@@ -99,11 +104,11 @@
         </header>
 
         <!-- Main Content -->
-        <main class="main-content dashboard">
-            <div class="dashboard-container">
-                <iframe class="dashboard-iframe"
-                    src="https://lookerstudio.google.com/embed/reporting/4cacaa18-dcc4-493e-b2ce-3f8460c7d8a4/page/YFrnF"
-                    allowfullscreen
+        <main class="main-content">
+            <div class="iframe-container">
+                <iframe
+                    src="https://lookerstudio.google.com/embed/reporting/bfcb28d5-4ae6-41e3-ba45-6325aa105c99/page/53NoF"
+                    frameborder="0" style="border:0" allowfullscreen
                     sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
                 </iframe>
             </div>
@@ -120,7 +125,6 @@
                 sidebar.classList.toggle("open");
             });
 
-            // Close sidebar when clicking outside on mobile
             document.addEventListener("click", (e) => {
                 if (window.innerWidth <= 1024) {
                     if (!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
